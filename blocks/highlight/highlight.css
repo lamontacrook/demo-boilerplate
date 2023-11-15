@@ -1,0 +1,91 @@
+main .highlight {
+  background: transparent;
+  border: 5px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #a4ce4e, #0090da);
+  max-width: 1049px;
+  height: 233px;
+  margin: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main .highlight > div {
+  width: 100%;
+}
+
+main .highlight>div>div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 28px;
+}
+
+main .highlight > div:last-child {
+  border-top: .7px solid#D9D9D9;
+}
+
+main .highlight > div > div:first-child {
+  padding: 30px 0;
+}
+
+main .highlight > div > div > h2 {
+  margin: 0;
+  font-size: var(--heading-font-size-m);
+  font-weight: 500px;
+}
+
+main .highlight > div:last-child p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  line-height: 24px;
+}
+
+main .highlight a:any-link {
+  color: #007ABC;
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+}
+
+main .highlight > div:last-child p:last-child {
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  main .highlight>div>div {
+    margin: 0 128px 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  main .highlight {
+    background: transparent;
+    border: 5px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #a4ce4e, #0090da);
+    max-width: 1049px;
+    height: 138px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+
+  main .highlight>div {
+    margin: 0 50px ;
+  }
+
+  main .highlight > div > div {
+    margin: unset;
+    align-items: flex-start;
+  }
+
+  main .highlight > div:last-child {
+    width: 403px;
+    padding: 0 32px;
+    border-left: 1px solid #D9D9D9;
+  }
+}

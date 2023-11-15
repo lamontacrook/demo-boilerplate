@@ -1,0 +1,71 @@
+.section.cards-container > div > p::after {
+  content: "----------";
+  color: transparent;
+  margin-left: 20px;
+  height: .2px;
+  width: 76px;
+  margin-top: 20px;
+  background: linear-gradient(
+    to bottom,
+    transparent 8px,
+    #008edd 9px,
+    #a2cf42 1px,
+    transparent 10px
+  );
+}
+
+.cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 16px;
+}
+
+.cards > ul > li {
+  border: 1px solid var(--highlight-background-color);
+  background-color: var(--highlight-background-color);
+}
+
+.cards .cards-card-body {
+  margin: 16px;
+  padding: 0 0 43px;
+}
+
+.cards .cards-card-body ul {
+  list-style: disc;
+}
+
+.cards .cards-card-body p, 
+.cards .cards-card-body li {
+  font-size: var(--body-font-size-xs);
+  line-height: 28px;
+}
+
+.cards .cards-card-body p > strong,
+.cards .cards-card-body h2 {
+  line-height: 30px;
+  font-size: var(--heading-font-size-m);
+  font-weight: 500;
+}
+
+.cards .cards-card-image {
+  line-height: 0;
+  border-bottom: 12px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #008edd, #008edd 0%, #a2cf42 99%, var(--highlight-background-color) 2%);
+  border-image-width: 180px;
+}
+
+.cards .cards-card-body > *:first-child {
+  margin-top: 0;
+}
+
+.cards > ul > li img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  min-height: 255px;
+  max-height: 255px;
+}

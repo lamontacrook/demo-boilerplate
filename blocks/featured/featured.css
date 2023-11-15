@@ -1,0 +1,126 @@
+main .featured {
+  background: var(--accent-background-color);
+  border-image-source: linear-gradient(to left, #a4ce4e,#0090da);
+  border-image-slice: 1;
+  border-bottom: 5px solid;
+  border-left: unset;
+}
+
+main .featured div {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+main .featured > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+main .featured.right > div {
+  flex-direction: column;
+}
+
+main .featured > div:last-child {
+  padding: 0 15px;
+}
+
+main .featured div > div > p {
+  font-size: var(--body-font-size-xs);
+  line-height: 30px;
+}
+
+main .featured h2 {
+  margin: unset;
+  font-size: var(--heading-font-size-m);
+  line-height: 36px;
+  padding: 12px 0 0;
+}
+
+main .featured h3 {
+  font-size: var(--heading-font-size-m);
+  line-height: 36px;
+}
+
+main .featured picture {
+  min-width: 100%
+}
+
+main .featured img {
+  object-fit: cover;
+  max-height: 346px;
+  min-height: 294px;
+  width: 100%
+}
+
+main .featured .button {
+  width: 100%;
+  font-size: var(--body-font-size-xs);
+  line-height: 22px;
+  font-weight: 600;
+  padding: 12px;
+}
+
+@media (min-width: 1024px) {
+  main .featured div {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0 0;
+  }
+
+  main .featured.right > div {
+    flex-direction: row;
+  }
+
+  main .featured picture {
+    min-width: 620px;
+  }
+
+  main .featured .button {
+    width: unset;
+    min-width: 139px;
+    font-size: var(--body-font-size-xs);
+    line-height: 22px;
+    font-weight: 600;
+    padding: 12px;
+  }
+  
+  main .featured {
+    background: linear-gradient(90deg, var(--accent-background-color) 70%, transparent 30%); 
+    border-bottom: unset;
+    border-left: 15px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to top,#a4ce4e,#0090da);
+    max-height: 399px;
+  }
+
+  main .featured img {
+    width: unset;
+  }
+
+  main .featured.right {
+    background: linear-gradient(90deg, transparent 30%, var(--accent-background-color) 70%);
+    border-right: 15px solid;
+    border-left: unset;
+  }
+
+  main .featured h3 {
+    font-size: var(--heading-font-size-l);
+    line-height: 40px;
+    font-weight: 500;
+  }
+
+  main .featured div > div > p {
+    font-size: var(--body-font-size-s);
+    line-height: 35px;
+  }
+
+  main .featured div > div:first-child {
+    padding: 20px 0; 
+  }
+
+  main .featured div > div:last-child {
+    padding: 20px;
+  }
+}

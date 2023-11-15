@@ -1,0 +1,293 @@
+main .hero-container > div {
+  max-width: unset;
+}
+
+main .hero-container {
+  padding: 0;
+}
+
+main .hero {
+  position: relative;
+  min-height: 658px;
+  background-color: #f2f2f2;
+  z-index: -2;
+}
+
+main .hero .hero-content {
+  width: 495px;
+  display: flex;
+  flex-direction: column;
+}
+
+main .hero .hero-content h1 {
+  color: white;
+  line-height: 39px;
+  font-size: var(--heading-font-size-l);
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 67%;
+  Transform: translate(-50%, -50%);
+  width: 78%;
+}
+
+main .hero .hero-content p {
+  color: white;
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  margin: 12px auto;
+  padding: 0;
+}
+
+main .hero picture {
+  object-fit: cover;
+  box-sizing: border-box;
+  min-width: 439px;
+  background-color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -2;
+}
+
+main .hero img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 415px;
+  height: auto;
+}
+
+main .hero .blue-box {
+  background: linear-gradient(116.82deg, #000016 0, #1e4c76 100%);
+  z-index: -1;
+  height: 300px;
+  position: absolute;
+  width: 90%;
+  margin: auto;
+  left: 50%;
+  top: 67%;
+  transform: translate(-50%, -50%);
+}
+
+.large-hero .hero .blue-box {
+  width: 95%;
+  top: 53%;
+  height: 539px;
+}
+
+.large-hero .hero .hero-content h1 {
+  line-height: 30px;
+  font-size: var(--heading-font-size-m);
+  margin: 10px auto;
+  position: unset;
+  transform: unset;
+  width: unset;
+}
+
+.large-hero .hero .hero-content {
+  z-index: 0;
+  height: 539px;
+  position: absolute;
+  width: 90%;
+  margin: auto;
+  left: 50%;
+  top: 57%;
+  transform: translate(-50%, -50%);
+}
+
+.large-hero main .hero picture {
+  height: auto;
+  width: 100vw;
+}
+
+.large-hero main .hero img {
+  width: 136px;
+  height: auto;
+}
+
+.large-hero .hero .hero-content a:any-link {
+  color: white;
+  text-decoration: underline;
+  padding: 5px;
+}
+
+.small-hero main .hero {
+  min-height: unset;
+}
+
+.small-hero main .hero > div:not(.blue-box) {
+  min-height: 299px;
+  max-height: 363px;
+  display: block;
+  background: transparent;
+  margin: 0;
+  width: 100vw;
+  max-width: unset;
+  padding: 0;
+}
+
+.small-hero main .hero img {
+  object-fit: cover;
+  min-width: 100%;
+  width: auto;
+  max-height: 363px;
+}
+
+.small-hero .hero .hero-content {
+  height: unset;
+  z-index: 0;
+  position: absolute;
+  max-width: 685px;
+  width: unset;
+  display: block;
+  margin: auto;
+  left: 35%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
+
+.small-hero .hero .hero-content h1 {
+  margin: unset;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
+  transform: unset;
+  position: unset;
+  left: unset;
+  top: unset;
+}
+
+.small-hero .hero .hero-content h2 {
+  color: white;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .small-hero .hero .hero-content {
+    height: unset;
+    z-index: 0;
+    position: absolute;
+    max-width: 685px;
+    margin: auto;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+  } 
+
+  .small-hero .hero .hero-content h1 {
+    font-size: 44px;
+    line-height: 50px;
+  }
+
+  .small-hero .hero .hero-content h2 {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 900px) {
+  main .hero .hero-content h1 {
+    line-height: 40px;
+    font-size: var(--heading-font-size-l);
+  }
+}
+
+@media (min-width: 1024px) {
+  main .hero>div:not(.blue-box) {
+    padding: 60px 0 0;
+    display: flex;
+    flex-direction: row;
+    max-width: 1080px;
+    margin: auto;
+    background-color: transparent;
+    min-height: 500px;
+    gap: 53px;
+    z-index: 1;
+  }
+
+  main .hero .hero-content p {
+    line-height: 26px;
+    font-size: var(--body-font-size-xs);
+    font-weight: 400;
+    margin: 10px auto;
+  }
+
+  main .hero img {
+    object-fit: cover;
+    max-width: 500px;
+    max-height: 500px;
+    width: auto;
+    height: 100%;
+  }
+
+  main .hero .blue-box {
+    height: 504px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    width:100vw;
+    transform: unset;
+  }
+
+  main .hero .hero-content h1 {
+    margin: 10px auto;
+    position: unset;
+    left: unset;
+    top: unset;
+    transform: unset;
+    width: unset;
+    line-height: 50px;
+    font-size: var(--heading-font-size-xl);
+  }
+
+  main .hero picture {
+    z-index: 0;
+  }
+
+  .large-hero .hero .blue-box {
+    top:0;
+  } 
+
+  .large-hero .hero .hero-content h1 {
+    font-size: var(--heading-font-size-xl);
+    line-height: 50px;
+    margin-bottom: 30px;
+  }
+
+  .large-hero .hero .hero-content p {
+    font-size: var(--body-font-size-s);
+    line-height: 30px;
+    margin-bottom: 10px;
+  }
+
+  .large-hero .hero .hero-content {
+    height: unset;
+    z-index: 0;
+    position: unset;
+    width: unset;
+    margin: auto;
+    left: unset;
+    top: unset;
+    transform: unset;
+  }
+
+  .large-hero main .hero img {
+    width: 60%;
+    height: auto;
+  }
+
+  .large-hero main .hero picture {
+    height: 438px;
+    width: unset;
+  }  
+
+  .large-hero main .hero .blue-box {
+    height: 600px;
+  }
+}
