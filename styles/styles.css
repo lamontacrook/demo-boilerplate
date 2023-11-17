@@ -16,9 +16,9 @@
   --link-hover-color: #000;
   --background-color: #fff;
   --overlay-background-color: #eee;
-  --highlight-background-color: #F4F7F8;
   --accent-background-color: #f2f2f2;
   --text-color: #000;
+  --accent-color: #F00;
 
   /* fonts */
   --body-font-family: adobe-clean, sans-serif;
@@ -79,6 +79,12 @@
   --gradient-border-start-color: var(--gradient-start-color);
   --gradient-border-end-color: var(--gradient-end-color);
   --border-image-width: 12px;
+
+  /* highlight block */
+  --highlight-width: 100%;
+  --highlight-height: 450px;
+  --highlight-background-color: var(--accent-color);
+  --highlight-text-color: var(--background-color);
 }
 
 @font-face {
