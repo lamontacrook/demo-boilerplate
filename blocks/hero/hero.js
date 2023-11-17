@@ -2,7 +2,6 @@ import { getMetadata } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const h1 = block.querySelector('h1');
-  const theme = getMetadata('theme');
   const picture = block.querySelector('picture');
   const h2 = block.querySelector('h2');
   const p = block.querySelectorAll('p');
@@ -14,13 +13,12 @@ export default function decorate(block) {
     heroContent.append(elem);
   });
 
-  block.querySelector('div').append(picture);
-  block.querySelector('div').append(heroContent);
-  block.querySelector('div').querySelector('div').remove();
-
-  if (theme !== 'small-hero') {
-    const blue = document.createElement('div');
-    blue.classList.add('blue-box');
-    block.append(blue);
+  block.querySelector('div').append(picture, heroContent);
+  const templates = getMetadata('template').split(',').map((item) => item.trim());
+  if (templates.includes('gradient')) {
+    const gradient = document.createElement('div');
+    block.querySelector('div').append(gradient);
+    templates.forEach((cls) => gradient.classList.add(cls));
   }
+  block.querySelector('div').querySelector('div').remove();
 }

@@ -52,10 +52,10 @@
 
 .cards .cards-card-image {
   line-height: 0;
-  border-bottom: 12px solid;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to right, #008edd, #008edd 0%, #a2cf42 99%, var(--highlight-background-color) 2%);
-  border-image-width: 180px;
+  border-bottom: var(--border-bottom);
+  border-image-slice: var(--border-image-slice);
+  border-image-source: linear-gradient(to right, var(--gradient-border-start-color), var(--gradient-border-start-color) 0%, var(--gradient-border-end-color) 100%, var(--highlight-background-color) 2%);;
+  border-image-width: var(--border-image-width);
 }
 
 .cards .cards-card-body > *:first-child {

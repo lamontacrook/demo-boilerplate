@@ -1,9 +1,11 @@
 main .featured {
   background: var(--accent-background-color);
-  border-image-source: linear-gradient(to left, #a4ce4e,#0090da);
-  border-image-slice: 1;
-  border-bottom: 5px solid;
+}
+
+main .featured.gradient {
   border-left: unset;
+  border-image-slice: var(--border-image-slice);
+  border-image-source: linear-gradient(to right, var(--gradient-border-start-color), var(--gradient-border-start-color) 0%, var(--gradient-border-end-color) 100%, var(--highlight-background-color) 2%);
 }
 
 main .featured div {
@@ -28,7 +30,7 @@ main .featured > div:last-child {
 
 main .featured div > div > p {
   font-size: var(--body-font-size-xs);
-  line-height: 30px;
+  line-height: 20px;
 }
 
 main .featured h2 {
@@ -75,6 +77,8 @@ main .featured .button {
 
   main .featured picture {
     min-width: 620px;
+    background-color: red;
+    height: 100%;
   }
 
   main .featured .button {
@@ -87,22 +91,30 @@ main .featured .button {
   }
   
   main .featured {
-    background: linear-gradient(90deg, var(--accent-background-color) 70%, transparent 30%); 
+    background: linear-gradient(270deg, transparent 30%, var(--accent-background-color) 70%);
+  }
+
+  main .featured.gradient {
     border-bottom: unset;
     border-left: 15px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to top,#a4ce4e,#0090da);
-    max-height: 399px;
-  }
+    border-image-source: linear-gradient(to top,var(--gradient-border-end-color),var(--gradient-border-start-color));
+ }
 
   main .featured img {
     width: unset;
+    max-height: unset;
+    height: 100%;
   }
 
   main .featured.right {
     background: linear-gradient(90deg, transparent 30%, var(--accent-background-color) 70%);
+  }
+
+  main .featured.gradient.right {
     border-right: 15px solid;
     border-left: unset;
+    border-image-source: linear-gradient(to top, var(--gradient-border-end-color), var(--gradient-border-start-color));;
   }
 
   main .featured h3 {
@@ -113,7 +125,7 @@ main .featured .button {
 
   main .featured div > div > p {
     font-size: var(--body-font-size-s);
-    line-height: 35px;
+    line-height: 28px;
   }
 
   main .featured div > div:first-child {

@@ -21,7 +21,7 @@
   --text-color: #000;
 
   /* fonts */
-  --body-font-family: metlifecircular, roboto, roboto-fallback;
+  --body-font-family: adobe-clean, sans-serif;
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -51,6 +51,34 @@
   --nav-font-weight: 500;
   --nav-text-transform: uppercase;
 
+  /* hero width */
+  --hero-image-width: 100%;
+  --hero-width: 100%;
+  --hero-background-color: #f2f2f2;
+  --hero-position: fixed;
+  --hero-height: 658px;
+  --hero-content-left: 10%;
+  --hero-content-top: 50%;
+  --hero-content-transform: translateY(-50%);
+  --hero-content-width: 20%;
+  --hero-content-min-width: 400px;
+  --hero-content-background-color: transparent;
+
+  /* gradient */
+  --gradient-start-color: #F00;
+  --gradient-end-color: #FDDD1C;
+
+  /* hero gradient */
+  --gradient-background-start-color: var(--gradient-start-color);
+  --gradient-background-end-color: var(--gradient-end-color);
+  --gradient-background-width: 50%;
+
+  /* card gradient */
+  --border-bottom: 12px solid;
+  --border-image-slice: 1;
+  --gradient-border-start-color: var(--gradient-start-color);
+  --gradient-border-end-color: var(--gradient-end-color);
+  --border-image-width: 12px;
 }
 
 @font-face {
@@ -247,6 +275,7 @@ main img {
 
 main .section {
   padding: 0;
+  background-color: var(--background-color);
 }
 
 main .default-content-wrapper h2 {
