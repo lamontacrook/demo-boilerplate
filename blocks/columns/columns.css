@@ -24,11 +24,26 @@ main .columns-wrapper {
 
 .columns > div > div {
   order: 1;
+  position: relative;
+}
+
+.columns > div > div:has(.columns-content) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.columns > div > div > .columns-content {
+  max-width: 634px;
+  margin: auto;
+  background-color: aqua;
 }
 
 .columns > div > .columns-img-col {
   order: 0;
   transform: translateZ(-10px) scale(1);
+  height: var(--columns-image-div-height);
+  z-index: 0;
 }
 
 .columns > div > .columns-img-col img {
@@ -37,12 +52,18 @@ main .columns-wrapper {
   min-height: 100%;
 }
 
+@media (min-width: 600px) {
+  main .section.columns-container {
+    padding: var(--columns-container-padding);
+  }
+}
+
 @media (min-width: 900px) {
   .columns > div {
-    align-items: center;
     align-items: stretch;
     flex-direction: unset;
     gap: 32px;
+    width: 100%;
   }
 
   .columns > div > div {

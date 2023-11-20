@@ -52,6 +52,9 @@
   --nav-font-weight: 500;
   --nav-text-transform: uppercase;
 
+  /* section */
+  --section-padding: 34px 20px;
+
   /* hero width */
   --hero-image-width: 100%;
   --hero-width: 100%;
@@ -89,7 +92,9 @@
   --highlight-slider-max-width: 1024px;
 
   /* columns block */
-  --columns-max-width: 1024px;
+  --columns-max-width: 100%;
+  --columns-container-padding: 0;
+  --columns-image-div-height: 100vh;
 }
 
 @font-face {
@@ -98,7 +103,6 @@
   ascent-override: 95%;
   src: local('Arial');
 }
-
 
 @media (min-width: 900px) {
   :root {
@@ -306,7 +310,7 @@ main .default-content-wrapper {
 
 @media (min-width: 600px) {
   main .section {
-    padding: 34px 20px;
+    padding: var(--section-padding);
   }
 }
 
