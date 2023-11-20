@@ -1,17 +1,17 @@
-main .highlight > div {
-  width: 100%;
-}
-
-main .highlight>div>div {
-  max-width: 1024px;
-  margin: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: transparent;
+main .highlight .slider > div {
   text-align: center;
   color: var(--highlight-text-color);
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  background-color: transparent;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 main .section.highlight-container>div {
@@ -25,27 +25,70 @@ main .highlight {
   position: relative;
   height: var(--highlight-height);
   width: var(--highlight-width);
+  text-align: center;
 }
 
-main .highlight > div > div > h5 {
+main .highlight .slider {
+  max-width: var(--highlight-slider-max-width);
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;  
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  margin: auto;
+  height: 90%;
+  overflow: hidden;
+}
+
+main .highlight > a {
+  display: inline-flex;
+  width: .7rem;
+  height: .7rem;
+  background: var(--highlight-text-color);
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 2px;
+  position: relative;
+}
+
+main .highlight > a:active {
+  top: 1px;
+}
+
+main .highlight > a:focus {
+  background: var(--link-hover-color);
+}
+
+main .highlight > a:current {
+  background-color: var(--link-selected-color);
+}
+
+main .highlight > a:hover {
+  background: var(--link-hover-color);
+}
+
+main .highlight .slide {
+  width: 100%;
+}
+
+main .highlight .slide h5 {
   font-size: var(--heading-font-size-xl);
 }
 
-main .highlight > div > div > h4 {
+main .highlight .slide h4 {
   font-size: var(--heading-font-size-m);
 }
 
-main .highlight > div > div:first-child {
-  padding: 30px 0;
-}
-
-main .highlight > div > div > h2 {
+main .highlight .slide h2 {
   margin: 0;
   font-size: var(--heading-font-size-m);
   font-weight: 500px;
 }
 
-main .highlight > div p {
+main .highlight .slide p {
   margin: 0;
   font-size: var(--body-font-size-s);
   font-weight: 400;
