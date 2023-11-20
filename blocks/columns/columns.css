@@ -36,7 +36,7 @@ main .columns-wrapper {
 .columns > div > div > .columns-content {
   max-width: 634px;
   margin: auto;
-  background-color: aqua;
+  background-color: transparent;
 }
 
 .columns > div > .columns-img-col {

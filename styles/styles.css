@@ -45,6 +45,7 @@
 
   /* nav max width */
   --nav-max-width: 1350px;
+  --section-max-width: 1200px;
 
   /* nav sizes */
   --nav-font-size: 12px;
@@ -60,7 +61,7 @@
   --hero-width: 100%;
   --hero-background-color: #f2f2f2;
   --hero-position: fixed;
-  --hero-height: 658px;
+  --hero-height: 558px;
   --hero-content-left: 10%;
   --hero-content-top: 50%;
   --hero-content-transform: translateY(-50%);
@@ -93,8 +94,17 @@
 
   /* columns block */
   --columns-max-width: 100%;
-  --columns-container-padding: 0;
+  --columns-container-padding: 30px 0;
   --columns-image-div-height: 100vh;
+}
+
+body.margins {
+  --hero-width: var(--nav-max-width);
+  --highlight-width: var(--section-max-width);
+}
+
+body.scrollable {
+  --hero-position: relative;
 }
 
 @font-face {
@@ -316,7 +326,7 @@ main .default-content-wrapper {
 
 @media (min-width: 900px) {
   .section > div {
-    max-width: 1200px;
+    max-width: var(--section-max-width);
     margin: auto;
   }
 
