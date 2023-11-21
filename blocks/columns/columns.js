@@ -12,6 +12,13 @@ export default function decorate(block) {
           // picture is only content in column
           picWrapper.classList.add('columns-img-col');
         }
+      } else {
+        const content = document.createElement('div');
+        [...col.children].forEach((item) => {
+          content.append(item);
+        });
+        col.append(content);
+        content.classList.add('columns-content');
       }
     });
   });
