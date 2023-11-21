@@ -14,6 +14,26 @@
   );
 }
 
+.card-link .cards a:any-link {
+  text-decoration: none;
+}
+
+.cards > ul > li img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  min-height: 255px;
+  max-height: 255px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+  transform-origin: 50% 50%;
+}
+
+.card-link .cards li:hover img{
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  width: 100%;
+}
+
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -26,11 +46,12 @@
 .cards > ul > li {
   border: 1px solid var(--accent-background-color);
   background-color: var(--accent-background-color);
+  overflow: hidden;
 }
 
 .cards .cards-card-body {
   margin: 16px;
-  padding: 0 0 43px;
+  padding: 0 0 5px;
 }
 
 .cards .cards-card-body ul {
@@ -52,6 +73,10 @@
 
 .cards .cards-card-image {
   line-height: 0;
+  background-color: transparent;
+}
+
+.cards.gradient .cards-card-image {
   border-bottom: var(--border-bottom);
   border-image-slice: var(--border-image-slice);
   border-image-source: linear-gradient(to right, var(--gradient-border-start-color), var(--gradient-border-start-color) 0%, var(--gradient-border-end-color) 100%, var(--highlight-background-color) 2%);;
@@ -60,12 +85,4 @@
 
 .cards .cards-card-body > *:first-child {
   margin-top: 0;
-}
-
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  min-height: 255px;
-  max-height: 255px;
 }

@@ -17,7 +17,6 @@ main .highlight .slider > div {
 main .section.highlight-container>div {
   max-width: var(--highlight-width);
   padding: 0;
-  /* margin: 0; */
 }
 
 main .section.highlight-container {
