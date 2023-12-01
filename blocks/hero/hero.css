@@ -15,7 +15,7 @@ main .hero-wrapper {
 
 main .hero {
   position: var(--hero-position);
-  width: 100%;
+  width: var(--hero-width);
   background-color: var(--hero-background-color);
   z-index: -2;
   min-height: var(--hero-height);
@@ -104,8 +104,9 @@ main .hero .gradient.toleft {
 
 @media (min-width: 900px) {
   main .hero .hero-content h1,
-  main .hero .hero-content h2 {
-    margin: 10px auto;
+  main .hero .hero-content h2,
+  main .hero .hero-content p {
+    margin: 10px 0 12px;
     line-height: 40px;
     font-size: var(--heading-font-size-l);
   }
@@ -142,7 +143,6 @@ main .hero .gradient.toleft {
     line-height: 26px;
     font-size: var(--body-font-size-xs);
     font-weight: 400;
-    margin: auto 2.67px;
   }
 
   main .hero img {

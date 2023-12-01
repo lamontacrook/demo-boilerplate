@@ -1,55 +1,62 @@
+.margins > main .section.columns-container > div {
+  max-width: var(--columns-width);
+  margin: auto;
+}
+
 main .columns-wrapper {
   max-width: var(--columns-max-width);
 }
 
-.columns {
+main .columns {
   position: relative;
   min-height: 600px;
 }
 
-.columns > div {
+main .columns > div {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  position: absolute;
 }
 
-.columns img {
+main .columns img {
   width: 100%;
 }
 
-.columns p {
+main .columns p {
   font-size: var(--body-font-size-s);
 }
 
-.columns > div > div {
+main .columns > div > div {
   order: 1;
   position: relative;
 }
 
-.columns > div > div:has(.columns-content) {
+main .columns > div > div:has(.columns-content) {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.columns > div > div > .columns-content {
+main .columns > div > div > .columns-content {
   max-width: 634px;
   margin: auto;
   background-color: transparent;
+  padding: 0 7px;
 }
 
-.columns > div > .columns-img-col {
+main .columns > div > .columns-img-col {
   order: 0;
   transform: translateZ(-10px) scale(1);
   height: var(--columns-image-div-height);
   z-index: 0;
+  height: 100%;
 }
 
-.columns > div > .columns-img-col img {
+main .columns > div > .columns-img-col img {
   display: block;
   object-fit: cover;
   min-height: 100%;
+  height: 100%;
 }
 
 @media (min-width: 600px) {
@@ -59,14 +66,14 @@ main .columns-wrapper {
 }
 
 @media (min-width: 900px) {
-  .columns > div {
+  main .columns > div {
     align-items: stretch;
     flex-direction: unset;
     gap: 32px;
     width: 100%;
   }
 
-  .columns > div > div {
+  main .columns > div > div {
     flex: 1;
     order: unset;
   }

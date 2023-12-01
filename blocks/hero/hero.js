@@ -10,7 +10,7 @@ export default function decorate(block) {
   if (h1) heroContent.append(h1);
   if (h2) heroContent.append(h2);
   p.forEach((elem) => {
-    heroContent.append(elem);
+    if (elem.textContent.trim() !== '') heroContent.append(elem);
   });
 
   block.querySelector('div').append(picture, heroContent);
