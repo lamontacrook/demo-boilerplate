@@ -27,7 +27,6 @@ main .highlight {
   background-color: var(--highlight-background-color);
   position: relative;
   height: var(--highlight-height);
-  width: var(--highlight-width);
   text-align: center;
 }
 

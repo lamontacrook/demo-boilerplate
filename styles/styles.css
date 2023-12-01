@@ -101,6 +101,7 @@
 body.margins {
   --hero-width: var(--nav-max-width);
   --highlight-width: var(--section-max-width);
+  --columns-width: var(--section-max-width);
 }
 
 body.scrollable {
