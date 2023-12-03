@@ -1,0 +1,20 @@
+main > .form {
+  border: #eee;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: var(--nav-height);
+  height: 100%;
+  background-color: rgba(0 0 0 / 50%);
+  width: 2px;
+  padding: 10px;
+  color: transparent;
+}
+
+main > .form:hover {
+  width: 300px;
+  transition: all .5s ease-in-out .25s;
+  background-color: white;
+  color: black;
+}
