@@ -1,0 +1,121 @@
+main>.form {
+  border: #eee;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  position: fixed;
+  right: 0;
+  top: var(--nav-height);
+  height: fit-content;
+  min-height: 100vh;
+  background-color: rgba(0 0 0 / 50%);
+  /* width: 2px; */
+  padding: 10px;
+  color: transparent;
+  width: 500px;
+}
+
+main>.form:hover {
+  width: 500px;
+  transition: all .5s ease-in-out .25s;
+  /* background-color: white;
+  color: black; */
+}
+main > .form ul > li {
+  color: white;
+  font-size: 12px;
+  height: fit-content;
+  background: linear-gradient(90deg, var(--gradient-background-start-color) 0%, var(--gradient-background-end-color) 100%, rgba(162 207 66 / 0%) 0%);
+  margin: 0 2px;
+  border-radius: 3px;
+  width: 100%;
+  text-align: center;
+}
+
+main > .form ul a {
+  font-size: 14px;
+}
+
+main > .form ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 100%;
+  position: relative;
+  padding: 0;
+}
+main>.form>.container {
+  position: relative;
+  padding: 12px 0 0;
+  display: none;
+  /* background: linear-gradient(100deg, #402, #006);
+  padding: 2em;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 55'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='7' opacity='.1'%3E%3Cpath d='M-345 34.5s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 48.3 0 48.3s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 20.7s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 34.5 0 34.5s115-13.8 115-13.8S172.5 6.9 230 6.9s115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8m-920 27.6s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 62.1 0 62.1s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 6.9s57.5-13.8 115-13.8S-115 6.9-115 6.9-57.5 20.7 0 20.7 115 6.9 115 6.9 172.5-6.9 230-6.9 345 6.9 345 6.9s57.5 13.8 115 13.8S575 6.9 575 6.9'/%3E%3Cpath d='M-345-6.9s57.5-13.8 115-13.8S-115-6.9-115-6.9-57.5 6.9 0 6.9 115-6.9 115-6.9s57.5-13.8 115-13.8S345-6.9 345-6.9 402.5 6.9 460 6.9 575-6.9 575-6.9m-920 69s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 75.9 0 75.9s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3C/g%3E%3C/svg%3E%0A"),
+    linear-gradient(80deg, #202, #006);
+  background-position: 50% 50%;
+  animation: background-move 10s linear infinite;
+  background-size: 100vw auto, 100% 100%;
+  background-size: unquote('max(100vw, 30em)') auto, 100% 100%; */
+}
+
+@supports (mix-blend-mode: darken) {
+  .input-group {
+    position: relative;
+    mix-blend-mode: lighten;
+  }
+}
+
+main>.form .input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  margin: auto;
+  min-width: 90%;
+}
+
+main>.form .input-group>.label-item {
+  padding: 0 0.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #ccd;
+  color: rgba(255, 220, 255, 0.6);
+  cursor: pointer;
+}
+
+@supports (mix-blend-mode: darken) {
+  main>.form .input-group>.label-item {
+    position: absolute;
+    left: 3em;
+    top: -0.28em;
+    background: #000;
+  }
+}
+
+main>.form .input-group>.input-item {
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  border-style: none;
+  outline: none;
+  height: calc(2em + 1.6em + 0.5em);
+  width: 100%;
+  padding: 1.5em 1em;
+  border: .75px solid transparent;
+  background-image: linear-gradient(#000, #000), linear-gradient(120deg, var(--gradient-background-start-color) 0%, var(--gradient-background-end-color) 50%, rgba(162 207 66 / 0%) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1.8em;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+}

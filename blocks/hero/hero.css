@@ -38,17 +38,18 @@ main .hero .hero-content {
 
 main .hero .hero-content h1,
 main .hero .hero-content h2 {
-  color: white;
+  color: var(--hero-content-h1);
   line-height: 39px;
   font-size: var(--heading-font-size-l);
 }
 
 main .hero .hero-content h2 {
   font-size: var(--heading-font-size-m);
+  color: var(--hero-content-h2);
 }
 
 main .hero .hero-content p {
-  color: white;
+  color: var(--hero-content-p);
   font-size: var(--body-font-size-xs);
   font-weight: 400;
   padding: 0 0 0 1px;

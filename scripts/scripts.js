@@ -79,6 +79,51 @@ function buildHeroBlock(main) {
 }
 
 /**
+ * to add/remove a template, just add/remove it in the list below
+ */
+const TEMPLATE_LIST = [
+  'editor',
+];
+
+/**
+ * Run template specific decoration code.
+ * @param {Element} main The container element
+ */
+
+const overlap = (array) => {
+  const uniqueElements = new Set(array);
+  const filteredElements = array.filter((itm) => {
+    const item = itm.trim();
+    if (uniqueElements.has(item)) {
+      uniqueElements.delete(item);
+    } else {
+      return item;
+    }
+    return '';
+  });
+  return [...new Set(filteredElements)];
+};
+
+async function decorateTemplates(main) {
+  const templates = getMetadata('template').split(',').concat(TEMPLATE_LIST).map((item) => item.trim());
+  const overlapArry = overlap(templates);
+  console.log(overlapArry);
+
+  overlapArry.forEach(async (template) => {
+    try {
+      const mod = await import(`../templates/${template}/${template}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
+      if (mod.default) {
+        await mod.default(main);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Auto Blocking failed', error);
+    }
+  });
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -136,6 +181,7 @@ async function loadEager(doc) {
 
   const main = doc.querySelector('main');
   if (main) {
+    decorateTemplates(main);
     decorateMain(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
