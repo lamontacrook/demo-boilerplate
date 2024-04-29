@@ -78,6 +78,13 @@ function buildHeroBlock(main) {
   main.prepend(section);
 }
 
+function buildModalBlock(main) {
+  const div = main.querySelector('div');
+  const section = document.createElement('div');
+  section.append(buildBlock('modal', { elems: [div] }));
+  main.append(section);
+}
+
 /**
  * to add/remove a template, just add/remove it in the list below
  */
@@ -142,6 +149,9 @@ function buildAutoBlocks(main) {
   try {
     if (getMetadata('autoblock') === 'false') return;
     buildHeroBlock(main);
+
+    /***modal for styling */
+    // buildModalBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

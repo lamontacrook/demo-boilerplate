@@ -40,7 +40,8 @@ main .hero .hero-content h1,
 main .hero .hero-content h2 {
   color: var(--hero-content-h1);
   line-height: 39px;
-  font-size: var(--heading-font-size-l);
+  font-size: var(--heading-font-size-m);
+  color: var(--heading-font-color);
 }
 
 main .hero .hero-content h2 {

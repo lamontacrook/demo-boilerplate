@@ -20,13 +20,14 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  /* aspect-ratio: 16 / 9; */
   object-fit: cover;
-  min-height: 255px;
-  max-height: 255px;
+  /* min-height: 255px; */
+  /* max-height: 255px; */
   overflow: hidden;
   transition: transform 0.4s ease;
   transform-origin: 50% 50%;
+  max-width: 150px;
 }
 
 .card-link .cards li:hover img{
@@ -39,14 +40,18 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-gap: 40px;
 }
 
 .cards > ul > li {
   border: 1px solid var(--accent-background-color);
   background-color: var(--accent-background-color);
+  background-color: white;
+  border-radius: 17px;
   overflow: hidden;
+  padding: 26px;
+  width: 219px;
 }
 
 .cards .cards-card-body {
@@ -74,6 +79,7 @@
 .cards .cards-card-image {
   line-height: 0;
   background-color: transparent;
+  text-align: center;
 }
 
 .cards.gradient .cards-card-image {

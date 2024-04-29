@@ -15,7 +15,7 @@
   --link-color: #333;  /* link color */
   --link-hover-color: #000;
   --link-selected-color: #666;
-  --background-color: #fff;
+  --background-color: #F9F8F6;
   --overlay-background-color: #eee;
   --accent-background-color: #f2f2f2;
   --text-color: #000;
@@ -61,16 +61,18 @@
   --hero-width: 100%;
   --hero-background-color: #f2f2f2;
   --hero-position: fixed;
-  --hero-height: 558px;
+  --hero-height: 300px; 
+  /* 558px; */
   --hero-content-left: 10%;
-  --hero-content-top: 50%;
+  --hero-content-top: 30%;
   --hero-content-transform: translateY(-50%);
   --hero-content-width: 20%;
   --hero-content-min-width: 400px;
   --hero-content-background-color: transparent;
-  --hero-content-p: white;
-  --hero-content-h1: white;
+  --hero-content-p: black;
+  --hero-content-h1: black;
   --hero-content-h2: white;
+  --hero-button: linear-gradient(rgb(234, 33, 57) 0%, rgb(200, 16, 46) 100%);
 
   /* gradient */
   --gradient-start-color: #F00;
@@ -234,6 +236,10 @@ a.button:any-link, button {
   font-size: var(--body-font-size-xxs);
 }
 
+.hero a.button:any-link {
+  background: var(--hero-button);
+}
+
 a.button:hover, a.button:focus, button:hover, button:focus  {
   background-color: var(--link-hover-color);
   cursor: pointer;
@@ -293,8 +299,8 @@ main img {
 
 .icon {
   display: inline-block;
-  height: 24px;
-  width: 24px;
+  height: 34px;
+  /* width: 24px; */
 }
 
 .icon svg {
