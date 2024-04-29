@@ -107,7 +107,6 @@ const overlap = (array) => {
 async function decorateTemplates(main) {
   const templates = getMetadata('template').split(',').concat(TEMPLATE_LIST).map((item) => item.trim());
   const overlapArry = overlap(templates);
-  console.log(overlapArry);
 
   overlapArry.forEach(async (template) => {
     try {
