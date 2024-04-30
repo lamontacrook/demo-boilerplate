@@ -77,7 +77,7 @@ main .featured .button {
 
   main .featured picture {
     min-width: 620px;
-    background-color: red;
+    /* background-color: red; */
     height: 100%;
   }
 
