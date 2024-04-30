@@ -50,7 +50,7 @@
   background-color: white;
   border-radius: 17px;
   overflow: hidden;
-  padding: 26px;
+  padding: 5px;
   width: 219px;
 }
 
@@ -91,4 +91,12 @@
 
 .cards .cards-card-body > *:first-child {
   margin-top: 0;
+}
+
+@media (min-width: 900px){
+
+  .cards > ul > li {
+    padding: 26px;
+  }
+  
 }
