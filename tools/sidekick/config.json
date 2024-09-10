@@ -7,8 +7,7 @@
       "environments": [ "edit" ],
       "url": "https://main--metlife--lamontacrook.hlx.live/tools/sidekick/library.html",
       "includePaths": [ "**.docx**" ]
-    },  
-    "plugins": [
+    }, 
     {
       "id": "asset-library",
       "title": "AEM Assets Library",
