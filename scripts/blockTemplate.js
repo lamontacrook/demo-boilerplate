@@ -1,9 +1,9 @@
 const NODE_NAMES = {
-  'IMG': function (elem, p) { const goodies = elem.querySelector('picture'); p.replaceWith(goodies) },
-  'H3': function (elem, p) { const goodies = elem.querySelector('h3'); p.replaceWith(goodies) },
-  'P': function (elem, p) { const goodies = elem.querySelector('p'); p.replaceWith(goodies) },
-  'UL': function (elem, p) { const goodies = elem.querySelector('ul'); p.replaceWith(goodies) },
-  'A': function (elem, p) { const goodies = elem.querySelector('a'); p.href = goodies.href; goodies.classList.add('_delete'); }
+  IMG(elem, p) { const goodies = elem.querySelector('picture'); p.replaceWith(goodies); },
+  H3(elem, p) { const goodies = elem.querySelector('h3'); p.replaceWith(goodies); },
+  P(elem, p) { const goodies = elem.querySelector('p'); p.replaceWith(goodies); },
+  UL(elem, p) { const goodies = elem.querySelector('ul'); p.replaceWith(goodies); },
+  A(elem, p) { const goodies = elem.querySelector('a'); p.href = goodies.href; goodies.classList.add('_delete'); },
 };
 
 const buildOutPattern = (len, pattern) => {
@@ -20,15 +20,15 @@ const buildOutPattern = (len, pattern) => {
       dataRow.insertAdjacentElement('afterend', rowCopy);
     }
   }
-  return patternDom
-}
+  return patternDom;
+};
 
 const cleanUp = () => {
   const dels = document.querySelectorAll('._delete');
   dels.forEach((item) => {
     item.remove();
-  })
-}
+  });
+};
 
 export const patternDecorate = async (block) => {
   const pattern = await fetchTemplate(block);
@@ -36,15 +36,14 @@ export const patternDecorate = async (block) => {
   const blockAttr = block.attributes;
   const attrObj = {};
   Object.values(blockAttr).forEach((item) => attrObj[item.name] = item.value);
-  attrObj.class += ' ' + patternDom.getAttribute('class');
+  attrObj.class += ` ${patternDom.getAttribute('class')}`;
 
   let x = 0;
   [...block.children].forEach((row) => {
+    // get the row
+    const dataRow = patternDom.querySelector(`[data-row="${x}"]`);
 
-    //get the row
-    const dataRow = patternDom.querySelector('[data-row="' + x + '"]');
-
-    //get the elements in the row
+    // get the elements in the row
     const data = dataRow.querySelectorAll('[data-inject]');
     const patternElems = [].forEach.call(data, (p) => {
       NODE_NAMES[p.nodeName](row, p);
@@ -56,7 +55,7 @@ export const patternDecorate = async (block) => {
   Object.entries(attrObj).forEach(([key, value]) => block.setAttribute(key, value));
   block.innerHTML = patternDom.innerHTML;
   cleanUp();
-}
+};
 
 const fetchTemplate = async (block) => {
   const { blockName } = block.dataset;

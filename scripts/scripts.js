@@ -108,7 +108,6 @@ const overlap = (array) => {
 async function decorateTemplates(main) {
   const templates = getMetadata('template').split(',').concat(TEMPLATE_LIST).map((item) => item.trim());
   const overlapArry = overlap(templates);
-  console.log(overlapArry);
 
   overlapArry.forEach(async (template) => {
     try {
@@ -189,13 +188,14 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
   const picture = document.createElement('picture');
   const { pathname } = url;
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
-
+  console.log(breakpoints);
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
     if (br.media) source.setAttribute('media', br.media);
     source.setAttribute('type', 'image/webp');
-    const searchParams = new URLSearchParams({ width: br.width, format: 'webply' });
+    const searchParams = new URLSearchParams({ width: br.width, format: 'webply', smartcrop: br.smartcrop });
+    console.log(searchParams);
     source.setAttribute('srcset', appendQueryParams(url, searchParams));
     picture.appendChild(source);
   });
@@ -218,7 +218,52 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
     }
   });
 
+  // const tSrc = document.createElement('source');
+  // tSrc.setAttribute('media', '(max-width:599px)');
+  // tSrc.setAttribute('type', 'image/webp');
+  // tSrc.setAttribute('srcset', appendQueryParams(url, new URLSearchParams({ smartcrop: '11square' })));
+  // picture.appendChild(tSrc);
+
   return picture;
+
+  // let p = `<source media="(max-width: 899px)" type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=2000&amp;format=jpeg">
+  //   <source media="(min-width: 900px)" type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=jpeg&amp;smartcrop=54vert">
+  //   <img loading="lazy" alt="" src="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=jpeg">`;
+  // let pp = document.createElement('picture');
+  // pp.innerHTML = p;
+  // return pp;
+}
+
+/** *
+ *
+ * <picture>
+ * <source media="(min-width: 600px)" type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=2000&amp;format=webply">
+ * <source type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=webply">
+ * <source media="(min-width: 600px)" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=2000&amp;format=jpeg"><img loading="lazy" alt="" src="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=jpeg">
+ * </picture>
+ *
+ *
+ */
+
+/**
+ * <picture>
+  <source media="(max-width: 799px)" srcset="elva-480w-close-portrait.jpg" />
+  <source media="(min-width: 800px)" srcset="elva-800w.jpg" />
+  <img src="elva-800w.jpg" alt="Chris standing up holding his daughter Elva" />
+</picture>
+ *
+ *
+ */
+
+function whatBlockIsThis(element) {
+  let currentElement = element;
+
+  while (currentElement.parentElement) {
+    if (currentElement.parentElement.classList.contains('block')) return currentElement.parentElement;
+    currentElement = currentElement.parentElement;
+    if (currentElement.classList.length > 0) return currentElement.classList[0];
+  }
+  return null;
 }
 
 /**
@@ -227,12 +272,19 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
  */
 function decorateButtons(main) {
   main.querySelectorAll('a').forEach((a) => {
-    if(a.href.startsWith('https://delivery-')) {
-      const picture = createOptimizedPicture(a.href);
+    if (a.href.startsWith('https://delivery-')) {
+      if (a.parentElement.classList.contains('button-container')) a.parentElement.classList.remove('button-container');
+      console.log(getMetadata('columns'));
+      // min-width:900px=54vert,max-width:899px=169banner
+      // { media: '(min-width: 600px)', width: '2000' }
+      const breakpoints = [
+        { media: '(min-width: 900px)', width: '2000', smartcrop: '54vert' },
+        { media: '(max-width: 899px)', width: '900', smartcrop: '169banner' },
+      ];
+      const picture = createOptimizedPicture(a.href, 'test', false, breakpoints);
       a.replaceWith(picture);
     } else libDecorateButtons(main);
   });
-  
 }
 
 /**
