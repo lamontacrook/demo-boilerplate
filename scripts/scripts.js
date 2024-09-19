@@ -274,6 +274,7 @@ function decorateButtons(main) {
   main.querySelectorAll('a').forEach((a) => {
     if (a.href.startsWith('https://delivery-')) {
       if (a.parentElement.classList.contains('button-container')) a.parentElement.classList.remove('button-container');
+      console.log(a);
       console.log(getMetadata('columns'));
       // min-width:900px=54vert,max-width:899px=169banner
       // { media: '(min-width: 600px)', width: '2000' }
