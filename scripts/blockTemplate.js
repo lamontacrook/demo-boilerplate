@@ -14,7 +14,7 @@ const buildOutPattern = (len, pattern) => {
 
   if (dataRow.getAttribute('data-row') === 'n-length') {
     dataRow.setAttribute('data-row', 0);
-    for (let i = 1; i < len; i++) {
+    for (let i = 1; i < len; i += 1) {
       const rowCopy = dataRow.cloneNode(true);
       rowCopy.setAttribute('data-row', i);
       dataRow.insertAdjacentElement('afterend', rowCopy);
@@ -48,7 +48,7 @@ export const patternDecorate = async (block) => {
     const patternElems = [].forEach.call(data, (p) => {
       NODE_NAMES[p.nodeName](row, p);
     });
-    x++;
+    x += 1;
   });
 
   /** ammend block element */

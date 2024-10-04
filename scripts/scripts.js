@@ -178,7 +178,7 @@ function appendQueryParams(url, params) {
  * @returns {Element} The picture element
  *
  */
-export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }]) {
+export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '2000', format: 'webply' }, { width: '750', format: 'webply' }]) {
   const isAbsoluteUrl = /^https?:\/\//i.test(src);
 
   // Fallback to createOptimizedPicture if src is not an absolute URL
@@ -188,14 +188,14 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
   const picture = document.createElement('picture');
   const { pathname } = url;
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
-  console.log(breakpoints);
+
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
     if (br.media) source.setAttribute('media', br.media);
+    delete br.media;
     source.setAttribute('type', 'image/webp');
-    const searchParams = new URLSearchParams({ width: br.width, format: 'webply', smartcrop: br.smartcrop });
-    console.log(searchParams);
+    const searchParams = new URLSearchParams(br);
     source.setAttribute('srcset', appendQueryParams(url, searchParams));
     picture.appendChild(source);
   });
@@ -217,43 +217,8 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
       img.setAttribute('src', appendQueryParams(url, searchParams));
     }
   });
-
-  // const tSrc = document.createElement('source');
-  // tSrc.setAttribute('media', '(max-width:599px)');
-  // tSrc.setAttribute('type', 'image/webp');
-  // tSrc.setAttribute('srcset', appendQueryParams(url, new URLSearchParams({ smartcrop: '11square' })));
-  // picture.appendChild(tSrc);
-
   return picture;
-
-  // let p = `<source media="(max-width: 899px)" type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=2000&amp;format=jpeg">
-  //   <source media="(min-width: 900px)" type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=jpeg&amp;smartcrop=54vert">
-  //   <img loading="lazy" alt="" src="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=jpeg">`;
-  // let pp = document.createElement('picture');
-  // pp.innerHTML = p;
-  // return pp;
 }
-
-/** *
- *
- * <picture>
- * <source media="(min-width: 600px)" type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=2000&amp;format=webply">
- * <source type="image/webp" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=webply">
- * <source media="(min-width: 600px)" srcset="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=2000&amp;format=jpeg"><img loading="lazy" alt="" src="https://delivery-p124331-e1227315.adobeaemcloud.com/adobe/assets/urn:aaid:aem:35d3db0c-db15-4f5c-86db-e9dcc8d2f853/as/AdobeStock_302114365.jpeg?preferwebp=true&amp;width=750&amp;format=jpeg">
- * </picture>
- *
- *
- */
-
-/**
- * <picture>
-  <source media="(max-width: 799px)" srcset="elva-480w-close-portrait.jpg" />
-  <source media="(min-width: 800px)" srcset="elva-800w.jpg" />
-  <img src="elva-800w.jpg" alt="Chris standing up holding his daughter Elva" />
-</picture>
- *
- *
- */
 
 function whatBlockIsThis(element) {
   let currentElement = element;
@@ -271,21 +236,54 @@ function whatBlockIsThis(element) {
  * @param {Element} main The container element
  */
 function decorateButtons(main) {
-  main.querySelectorAll('a').forEach((a) => {
-    if (a.href.startsWith('https://delivery-')) {
-      if (a.parentElement.classList.contains('button-container')) a.parentElement.classList.remove('button-container');
-      console.log(a);
-      console.log(getMetadata('columns'));
-      // min-width:900px=54vert,max-width:899px=169banner
-      // { media: '(min-width: 600px)', width: '2000' }
-      const breakpoints = [
-        { media: '(min-width: 900px)', width: '2000', smartcrop: '54vert' },
-        { media: '(max-width: 899px)', width: '900', smartcrop: '169banner' },
-      ];
-      const picture = createOptimizedPicture(a.href, 'test', false, breakpoints);
-      a.replaceWith(picture);
-    } else libDecorateButtons(main);
+  main.querySelectorAll('img').forEach((img) => {
+    let altT = decodeURIComponent(img.alt);
+    if (altT) {
+      altT = JSON.parse(altT);
+      const { altText, deliveryUrl } = altT;
+      if (deliveryUrl && deliveryUrl.includes('https://delivery-')) {
+        const url = new URL(deliveryUrl);
+        const imgName = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+        // console.log(imgName.replace('.', '-'));
+        // console.log(getMetadata(imgName.replace('.', '-')));
+        const block = whatBlockIsThis(img);
+        const bp = getMetadata(block);
+
+        let breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }];
+
+        if (bp) {
+          const bps = bp.split('|');
+          const bpS = bps.map((b) => b.split(',').map((p) => p.trim()));
+
+          breakpoints = bpS.map((n) => {
+            const obj = {};
+            n.forEach((i) => {
+              const t = i.split(/:(.*)/s);
+              obj[t[0].trim()] = t[1].trim();
+            });
+            return obj;
+          });
+        } else {
+          const format = getMetadata(imgName.replace('.', '-'));
+          const formats = format.split('|');
+          const formatObj = {};
+
+          formats.forEach((i) => {
+            const [a, b] = i.split('=');
+            formatObj[a] = b;
+          });
+
+          breakpoints = breakpoints.map((n) => (
+            { ...n, ...formatObj }
+          ));
+        }
+
+        const picture = createOptimizedPicture(deliveryUrl, altText, false, breakpoints);
+        img.parentElement.replaceWith(picture);
+      }
+    }
   });
+  libDecorateButtons(main);
 }
 
 /**

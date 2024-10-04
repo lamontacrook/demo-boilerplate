@@ -3,6 +3,7 @@ main .columns>div {
   flex-direction: column;
   align-items: stretch;
   margin: 0 30px;
+  min-width: 100%;
 }
 
 main .columns>div>div {
@@ -23,11 +24,13 @@ main .columns>div>div:has(.columns-content) {
 
 main .columns-wrapper {
   max-width: var(--columns-max-width);
+  display: flex;
 }
 
 main .columns {
   position: relative;
   min-height: 600px;
+  margin: auto;
 }
 
 main .columns img {
