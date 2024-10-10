@@ -1,11 +1,15 @@
 {
+  "blockName": [{
+    "mimeType": "video/*",
+    "value": "Video"
+  }],
+  "blockTemplate": [{
+    "mimeType": "video/*",
+    "value": "<video class=\"video\" autoplay=\"\" playsinline=\"\" loop=\"\" src=\"${blockName}\" poster=\"${posterUrl}\"></video>"
+    }],
   "copyMode": [
     {
       "mimeType": "image/*",
-      "value": "use-alt-text"
-    },
-    {
-      "mimeType": "video/*",
       "value": "use-alt-text"
     }
   ]
