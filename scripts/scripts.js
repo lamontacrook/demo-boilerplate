@@ -244,8 +244,6 @@ function decorateButtons(main) {
       if (deliveryUrl && deliveryUrl.includes('https://delivery-')) {
         const url = new URL(deliveryUrl);
         const imgName = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
-        // console.log(imgName.replace('.', '-'));
-        // console.log(getMetadata(imgName.replace('.', '-')));
         const block = whatBlockIsThis(img);
         const bp = getMetadata(block);
 
