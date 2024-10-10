@@ -1,13 +1,11 @@
 {
-  "blockName": [
-    {
-      "mimeType": "video/*",
-      "value": "Embed"
-    }
-  ],
   "copyMode": [
     {
       "mimeType": "image/*",
+      "value": "use-alt-text"
+    },
+    {
+      "mimeType": "video/*",
       "value": "use-alt-text"
     }
   ]

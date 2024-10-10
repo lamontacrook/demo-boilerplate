@@ -96,7 +96,7 @@
   --highlight-slider-max-width: 1024px;
 
   /* columns block */
-  --columns-max-width: 100%;
+  --columns-max-width: 1200px;
   --columns-container-padding: 30px 0;
   --columns-image-div-height: 100vh;
 }
