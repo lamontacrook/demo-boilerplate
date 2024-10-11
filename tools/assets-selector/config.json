@@ -8,7 +8,7 @@
   "blockTemplate": [
     {
       "mimeType": "video/*",
-      "value": "<video class=\"video\" autoplay=\"\" playsinline=\"\" loop=\"\" src=\"${blockName}\" poster=\"${posterUrl}\"></video>"
+      "value": "<img src=\"${posterUrl}\" alt=\"{videoUrl:\"${videoUrl}\"}\" />"
     }
   ],
   "copyMode": [
