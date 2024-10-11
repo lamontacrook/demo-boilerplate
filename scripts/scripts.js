@@ -239,6 +239,7 @@ function decorateButtons(main) {
   main.querySelectorAll('img').forEach((img) => {
     let altT = decodeURIComponent(img.alt);
     if (altT) {
+      console.log(altT);
       altT = JSON.parse(altT);
       const { altText, deliveryUrl } = altT;
       if (deliveryUrl && deliveryUrl.includes('https://delivery-')) {
