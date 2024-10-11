@@ -231,6 +231,8 @@ function whatBlockIsThis(element) {
   return null;
 }
 
+{/* <video class="video" autoplay="" playsinline="" loop="" src="https://author-p124331-e1227315.adobeaemcloud.com/content/dam/wknd-headless/assets/AdobeStock_163855721.mp4" poster="https://author-p124331-e1227315.adobeaemcloud.com/content/dam/wknd-headless/assets/AdobeStock_163855721.mp4" data-aue-prop="asset" data-aue-type="media" data-aue-label="Asset"></video> */}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
