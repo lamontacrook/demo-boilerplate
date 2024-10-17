@@ -73,6 +73,7 @@ main .columns>div>.columns-img-col img {
     flex-direction: unset;
     gap: 32px;
     width: 100%;
+    min-width: var(--columns-max-width);
   }
 
   main .columns>div>div {

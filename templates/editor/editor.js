@@ -10,7 +10,7 @@ async function fetchVariables() {
   Object.values(json.data).forEach((row) => {
     if (row.Block === '') row.Block = 'default';
     else row.Block = row.Block.toLowerCase();
-    if (Object.prototype.hasOwnProperty.call(variableMap, row.Block)) 
+    if (Object.prototype.hasOwnProperty.call(variableMap, row.Block))
       variableMap[row.Block].push(row); //  eslint-desable-line max-len
     //  if (variableMap.hasOwnProperty(row.Block)) variableMap[row.Block].push(row);
     else variableMap[row.Block] = [row];

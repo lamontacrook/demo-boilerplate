@@ -1,3 +1,5 @@
+import { createOptimizedVideoEmbed } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
@@ -11,6 +13,9 @@ export default function decorate(block) {
         if (picWrapper && picWrapper.children.length === 1) {
           // picture is only content in column
           picWrapper.classList.add('columns-img-col');
+        }
+        if (pic.querySelector('[data-asset-type="video"]')) {
+          createOptimizedVideoEmbed(pic);
         }
       } else {
         const content = document.createElement('div');

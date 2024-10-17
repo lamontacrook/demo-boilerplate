@@ -168,6 +168,44 @@ function appendQueryParams(url, params) {
   return url.toString();
 }
 
+export function createOptimizedVideo(asset, autoplay = '', playsinline = '', loop = '') {
+  const img = asset.querySelector('[data-asset-type="video"]');
+  const src = img.alt;
+  const ext = src.split('.').pop();
+
+  asset.innerHTML = `<video loop='${loop}' muted='' playsInline='${playsinline}' autoplay='${autoplay}' controls='' poster='${img.src}'>
+    <source data-src='${src}' type='video/${ext}' />
+  </video>`;
+
+  const video = asset.querySelector('video');
+  const source = asset.querySelector('video > source');
+
+  source.src = source.dataset.src;
+
+  video.load();
+  video.addEventListener('loadeddata', () => {
+    video.setAttribute('autoplay', true);
+    video.setAttribute('data-loaded', true);
+    video.play();
+  });
+}
+
+const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+    <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
+      scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
+    </iframe>
+  </div>`;
+
+export function createOptimizedVideoEmbed(asset) {
+  const img = asset.querySelector('[data-asset-type="video"]');
+  const parent = asset.parentElement;
+  const iframe = getDefaultEmbed(new URL(img.alt));
+  const wrapper = document.createElement('div');
+  wrapper.className = 'dm-placeholder';
+  wrapper.innerHTML = iframe;
+  parent.innerHTML = wrapper.outerHTML;
+}
+
 /**
  * Creates an optimized picture element for an image.
  * If the image is not an absolute URL, it will be passed to libCreateOptimizedPicture.
@@ -231,8 +269,6 @@ function whatBlockIsThis(element) {
   return null;
 }
 
-{/* <video class="video" autoplay="" playsinline="" loop="" src="https://author-p124331-e1227315.adobeaemcloud.com/content/dam/wknd-headless/assets/AdobeStock_163855721.mp4" poster="https://author-p124331-e1227315.adobeaemcloud.com/content/dam/wknd-headless/assets/AdobeStock_163855721.mp4" data-aue-prop="asset" data-aue-type="media" data-aue-label="Asset"></video> */}
-
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -240,22 +276,19 @@ function whatBlockIsThis(element) {
 function decorateButtons(main) {
   main.querySelectorAll('img').forEach((img) => {
     let altT = decodeURIComponent(img.alt);
-    if (altT) {
-      console.log(altT);
-      altT = JSON.parse(altT);
-      const { altText, deliveryUrl } = altT;
-      if (deliveryUrl && deliveryUrl.includes('https://delivery-')) {
+
+    if (altT && altT.includes('https://delivery-')) {
+      try {
+        altT = JSON.parse(altT);
+        const { altText, deliveryUrl } = altT;
         const url = new URL(deliveryUrl);
         const imgName = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
         const block = whatBlockIsThis(img);
         const bp = getMetadata(block);
-
         let breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }];
-
         if (bp) {
           const bps = bp.split('|');
           const bpS = bps.map((b) => b.split(',').map((p) => p.trim()));
-
           breakpoints = bpS.map((n) => {
             const obj = {};
             n.forEach((i) => {
@@ -265,22 +298,23 @@ function decorateButtons(main) {
             return obj;
           });
         } else {
-          const format = getMetadata(imgName.replace('.', '-'));
+          const format = getMetadata(imgName.toLowerCase().replace('.', '-'));
           const formats = format.split('|');
           const formatObj = {};
-
           formats.forEach((i) => {
             const [a, b] = i.split('=');
             formatObj[a] = b;
           });
-
           breakpoints = breakpoints.map((n) => (
             { ...n, ...formatObj }
           ));
         }
-
         const picture = createOptimizedPicture(deliveryUrl, altText, false, breakpoints);
         img.parentElement.replaceWith(picture);
+      } catch (error) {
+        img.setAttribute('style', 'border:5px solid red');
+        img.setAttribute('data-asset-type', 'video');
+        img.setAttribute('title', 'Update block to render video.');
       }
     }
   });
