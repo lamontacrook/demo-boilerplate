@@ -15,6 +15,10 @@
     {
       "mimeType": "image/*",
       "value": "use-alt-text"
+    },
+    {
+      "mimeType": "application/pdf",
+      "value": "use-alt-text"
     }
   ],
   "filterSchema": [ 
